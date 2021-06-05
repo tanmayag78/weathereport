@@ -15,10 +15,12 @@
     <body>
         <form action="/" method="post">
           {% csrf_token %}
-          <label for="long">Longitude:</label><br>
-          <input type="number" id="long" name="long" placeholder="Enter Longitude Here(0.25)"><br>
-          <label for="lat">Latitude:</label><br>
-          <input type="number" id="lat" name="lat" placeholder="Enter Latitude Here(51.5)"><br><br>
+            <div class="coordinate-group">
+              <label for="long">Longitude:</label><br>
+              <input type="text" id="long" name="long" placeholder="Enter Longitude Here"><br>
+              <label for="lat">Latitude:</label><br>
+              <input type="text" id="lat" name="lat" placeholder="Enter Latitude Here"><br><br>
+            </div>
           <label for="lat">Don't have the coordinates? Don't worry, write location name: </label><br>
           <input type="text" id="loc" name="loc" placeholder="Enter Location(eg.India)"><br><br>
           <input type="submit" value="Submit">
@@ -26,7 +28,7 @@
         </form>
 
         {% if err_msg %}
-            {{ err_msg }}
+            <span>Error: {{ err_msg }} </span>
         {% elif data %}
             <p style="color: cornflowerblue"> Longitude: {{ long }}, Latitude: {{ lat }} </p>
             {% for k, v in data.items %}
