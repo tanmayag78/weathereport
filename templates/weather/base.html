@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Weather Report</title>
+        <style>
+            .data {
+            color: blue;
+            font-size: 100%;
+            position: relative;
+            top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="/" method="post">
+          {% csrf_token %}
+          <label for="long">Longitude:</label><br>
+          <input type="number" id="long" name="long" placeholder="Enter Longitude Here(0.25)"><br>
+          <label for="lat">Latitude:</label><br>
+          <input type="number" id="lat" name="lat" placeholder="Enter Latitude Here(51.5)"><br><br>
+          <label for="lat">Don't have the coordinates? Don't worry, write location name: </label><br>
+          <input type="text" id="loc" name="loc" placeholder="Enter Location(eg.India)"><br><br>
+          <input type="submit" value="Submit">
+            <p>If all the fields are filled and submitted, then preference will be given to coordinates</p>
+        </form>
+
+        {% if err_msg %}
+            {{ err_msg }}
+        {% elif data %}
+            <p style="color: cornflowerblue"> Longitude: {{ long }}, Latitude: {{ lat }} </p>
+            {% for k, v in data.items %}
+                <span class="data">{{ k }} : {{ v }}</span><br/>
+            {% endfor %}
+        {% endif %}
+    </body>
+</html>
