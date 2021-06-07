@@ -1,0 +1,6 @@
+-r ./base.txt
+
+ipython==7.24.1
+ipdb==0.13.9
+
+# other code quality related packages like flake8, pylint, black etc
